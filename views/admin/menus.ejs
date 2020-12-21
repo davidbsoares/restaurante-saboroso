@@ -1,141 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin - Hcode Treinamentos</title>
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-  <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
-  <meta name="author" content="Hcode.com.br" />
-  <meta name="theme-color" content="#3c8dbc">
-</head>
-
-<body class="hold-transition skin-blue sidebar-mini">
-  <div class="wrapper">
-
-    <!-- Main Header -->
-    <header class="main-header">
-
-      <!-- Logo -->
-      <a href="index2.html" class="logo">
-        <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini">HCODE</span>
-        <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg">HCODE</span>
-      </a>
-
-      <!-- Header Navbar -->
-      <nav class="navbar navbar-static-top" role="navigation">
-        <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-          <span class="sr-only">Toggle navigation</span>
-        </a>
-        <!-- Navbar Right Menu -->
-        <div class="navbar-custom-menu">
-          <ul class="nav navbar-nav">
-            <!-- User Account Menu -->
-            <li class="dropdown user user-menu">
-              <!-- Menu Toggle Button -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <!-- The user image in the navbar-->
-                <img src="dist/img/avatar5.png" class="user-image" alt="User Image">
-                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">Fulano Junior</span>
-              </a>
-              <ul class="dropdown-menu">
-                <!-- The user image in the menu -->
-                <li class="user-header">
-                  <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
-
-                  <p>
-                    Fulano Junior
-                    <small>fulano@hcode.com.br</small>
-                  </p>
-                </li>
-
-                <!-- Menu Footer-->
-                <li class="user-footer">
-                  <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
-                  </div>
-                  <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Sair</a>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-    <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar">
-
-      <!-- sidebar: style can be found in sidebar.less -->
-      <section class="sidebar">
-
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel">
-          <div class="pull-left image">
-            <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
-          </div>
-          <div class="pull-left info">
-            <p>Fulano Junior</p>
-            <!-- Status -->
-            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-          </div>
-        </div>
-
-        <!-- Sidebar Menu -->
-        <ul class="sidebar-menu" data-widget="tree">
-          <li class="header">MENU</li>
-          <!-- Optionally, you can add icons to the links -->
-          <li>
-            <a href="index.html">
-              <i class="fa fa-home"></i>
-              <span>Tela Inicial</span>
-            </a>
-          </li>
-          <li class="active">
-            <a href="menus.html">
-              <i class="fa fa-cutlery"></i>
-              <span>Menu</span>
-            </a>
-          </li>
-          <li>
-            <a href="reservations.html">
-              <i class="fa fa-calendar-check-o"></i>
-              <span>Reservas</span>
-            </a>
-          </li>
-          <li>
-            <a href="contacts.html">
-              <i class="fa fa-comments"></i>
-              <span>Contatos</span>
-            </a>
-          </li>
-          <li>
-            <a href="users.html">
-              <i class="fa fa-users"></i>
-              <span>Usuários</span>
-            </a>
-          </li>
-          <li>
-            <a href="emails.html">
-              <i class="fa fa-envelope"></i>
-              <span>E-mails</span>
-            </a>
-          </li>
-        </ul>
-        <!-- /.sidebar-menu -->
-      </section>
-      <!-- /.sidebar -->
-    </aside>
+<%- include('inc/header')-%>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -173,16 +36,18 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1.</td>
-                  <td><img src="dist/img/boxed-bg.jpg" alt="" style="height: 18px;"></td>
-                  <td>Update software</td>
-                  <td>Diuretics paradis num copo é motivis de denguis.</td>
-                  <td>R$1,99</td>
-                  <td><button type="button" class="btn btn-xs btn-info btn-update" data-toggle="modal" data-target="#modal-update"><i
+                <% data.forEach(function(row){ %>
+                <tr data-row="<%= JSON.stringify(row); %>">
+                  <td><%= row.id %></td>
+                  <td><img src="/<%= row.photo %>" alt="" style="height: 18px;"></td>
+                  <td><%= row.title %></td>
+                  <td><%= row.description %></td>
+                  <td><%= row.price %></td>
+                  <td><button type="button" class="btn btn-xs btn-info btn-update"><i
                         class="fa fa-pencil"></i> Editar</button>&nbsp;<button type="button" class="btn btn-xs btn-danger btn-delete"><i
                         class="fa fa-trash"></i> Excluir</button></td>
                 </tr>
+                <%});%>
               </tbody>
             </table>
           </div>
@@ -197,7 +62,7 @@
     <div class="modal fade" id="modal-create">
       <div class="modal-dialog">
         <div class="modal-content" style="border-top: 3px solid #00a65a;">
-          <form method="post">
+          <form method="post" action="/admin/menus">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -237,7 +102,7 @@
     <div class="modal fade" id="modal-update">
       <div class="modal-dialog">
         <div class="modal-content" style="border-top: 3px solid #00c0ef;">
-          <form method="post">
+          <form method="post" action="/admin/menus">
             <input type="hidden" name="id">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -276,46 +141,32 @@
     </div>
 
     <!-- Main Footer -->
-    <footer class="main-footer">
-      <!-- To the right -->
-      <div class="pull-right hidden-xs">
-        <a target="_blank" href="https://www.hcode.com.br">Hcode</a>
-      </div>
-      <!-- Default to the left -->
-      Projeto desenvolvido no curso online de JavaScript da Hcode Treinamentos.
-    </footer>
+    <%- include('inc/footer')-%>
+    
+<script src="/js/filereader.js"></script>
+<script src="/js/formsave.js"></script>
+<script src="/js/grid.js"></script>
 
-  </div>
 
-  <!-- jQuery 3 -->
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <!-- Bootstrap 3.3.7 -->
-  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- PACE -->
-  <script src="bower_components/PACE/pace.min.js"></script>
-  <!-- SlimScroll -->
-  <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-  <!-- FastClick -->
-  <script src="bower_components/fastclick/lib/fastclick.js"></script>
-  <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.min.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="dist/js/demo.js"></script>
-  <!-- page script -->
-  <script type="text/javascript">
-    // To make Pace works on Ajax calls
-    $(document).ajaxStart(function () {
-      Pace.restart()
-    })
-    $('.ajax').click(function () {
-      $.ajax({
-        url: '#', success: function (result) {
-          $('.ajax-content').html('<hr>Ajax Request Completed !')
+<script>
+
+  new ImageFileReader('#modal-create [type=file]', '#modal-create img');
+  new ImageFileReader('#modal-update [type=file]', '#modal-update img');
+
+  new Grid({    
+    deleteUrl: '/admin/menus/${data.id}',
+    deleteMsg: 'Deseja realmente excluir o menu ${data.title}?',
+    onUpdateLoad: (form, name, data) =>{
+      let input = form.querySelector(`[name=${name}]`);
+        switch(name){          
+          case 'photo':
+            form.querySelector('img').src = '/'+data[name];
+          break;
+          default:          
+            if (input) input.value = data[name]
+            
         }
-      })
-    })
-  </script>
+    }    
+  });
 
-</body>
-
-</html>
+</script>

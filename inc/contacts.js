@@ -39,7 +39,8 @@ module.exports={
   getContacts(){
     return new Promise((resolve, reject) =>{
         conn.query(`
-            SELECT * FROM tb_contacts ORDER BY register DESC
+            SELECT * FROM tb_contacts
+            ORDER BY register DESC
         `, (err, results) => {
             if(err){
                 reject(err);
@@ -55,7 +56,8 @@ module.exports={
     return new Promise((resolve, reject)=>{
 
         conn.query(`
-            DELETE FROM tb_contacts WHERE id = ?
+            DELETE FROM tb_contacts
+            WHERE id = ?
         `, [
             id
         ]), (err, results)=>{

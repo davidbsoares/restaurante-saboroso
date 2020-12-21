@@ -95,19 +95,20 @@ class Grid{
     this.fireEvent('afterUpdateClick', [e]);
   }
 
-  btnDeleteClick(e){
-    this.fireEvent('beforeDeleteClick')        
+  btnDeleteClick(e) {
+
+    this.fireEvent('beforeDeleteClick');
 
     let data = this.getTrData(e);
-
-    if(confirm(eval('`' + this.options.deleteMsg + '`'))) {
-      fetch(eval('`' + this.options.deleteUrl + '`'), {
-        method:'DELETE'
-      })
-      .then(response => response.json())
-      .then(json =>{
-        this.fireEvent('afterDeleteClick')
-      })
+    
+    if (confirm(eval('`' + this.options.deleteMsg + '`'))) {        
+        fetch(eval('`' + this.options.deleteUrl + '`'), {
+            method: 'DELETE'
+        })
+            .then(response => response.json())
+            .then(json => {
+                this.fireEvent('afterDeleteClick')
+            });
     }
   }
 
