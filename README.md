@@ -46,7 +46,7 @@ O projeto está desenvolvido utilizando as seguintes tecnologias:
 - JavaScript
 - Node.js 
 - MySQL 
-- ChatJS
+- ChartJS
 - Redis
 
 --- 
